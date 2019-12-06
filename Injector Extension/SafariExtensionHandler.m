@@ -41,7 +41,6 @@ NSMutableDictionary* SearchFiles(NSString *dir) {
 }
 
 @interface SafariExtensionHandler (Private)
-- (void)handleOnLoad:(SFSafariPage *)page;
 - (void)handleExtensionLoaded:(SFSafariPage *)page;
 @end
 
@@ -55,9 +54,7 @@ NSMutableDictionary* SearchFiles(NSString *dir) {
 }
 
 - (void)messageReceivedWithName:(NSString *)messageName fromPage:(SFSafariPage *)page userInfo:(NSDictionary *)userInfo {
-  if ([messageName isEqualToString:@"dom-onload"])
-    [self handleOnLoad:page];
-  else if ([messageName isEqualToString:@"extension-loaded"])
+  if ([messageName isEqualToString:@"extension-loaded"])
     [self handleExtensionLoaded:page];
 }
 
@@ -73,10 +70,6 @@ NSMutableDictionary* SearchFiles(NSString *dir) {
 
 - (SFSafariExtensionViewController *)popoverViewController {
   return [SafariExtensionViewController sharedController];
-}
-
-- (void)handleOnLoad:(SFSafariPage *)page {
-  [page dispatchMessageToScriptWithName:@"dom-onload" userInfo:nil];
 }
 
 - (void)handleExtensionLoaded:(SFSafariPage *)page {
