@@ -62,7 +62,6 @@ NSMutableDictionary* SearchFiles(NSString *dir) {
 
 - (void)toolbarItemClickedInWindow:(SFSafariWindow *)window {
   // This method will be called when your toolbar item is clicked.
-  NSLog(@"The extension's toolbar item was clicked");
 }
 
 - (void)validateToolbarItemInWindow:(SFSafariWindow *)window validationHandler:(void (^)(BOOL enabled, NSString *badgeText))validationHandler {
