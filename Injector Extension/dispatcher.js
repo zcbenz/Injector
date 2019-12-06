@@ -65,6 +65,8 @@ function readFile(config, filename) {
   } catch (error) {
     throw new Error(`${filename} is not a valid path`)
   }
+  if (node.error)
+    throw new Error(`Error reading ${filename}: ${node.error}`)
   if (typeof node.content !== 'string')
     throw new Error(`${filename} is not a file`)
   return node.content

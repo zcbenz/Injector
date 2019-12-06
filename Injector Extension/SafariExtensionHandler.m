@@ -18,10 +18,12 @@ NSString *RealHomeDirectory() {
   return [NSString stringWithUTF8String:pw->pw_dir];
 }
 
-NSMutableDictionary* ReadFile(NSString *path) {
-  return @{
-    @"content": [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil]
-  };
+NSDictionary *ReadFile(NSString *path) {
+  NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+  if (content)
+    return @{ @"content": content };
+  else
+    return @{ @"error": @"File read error" };
 }
 
 NSMutableDictionary* SearchFiles(NSString *dir) {
