@@ -9,5 +9,5 @@
 #import <SafariServices/SafariServices.h>
 
 @interface SafariExtensionHandler : SFSafariExtensionHandler
-
+@property(strong, nonatomic) NSMutableDictionary *config;
 @end

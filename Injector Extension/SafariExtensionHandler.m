@@ -9,11 +9,50 @@
 #import "SafariExtensionHandler.h"
 #import "SafariExtensionViewController.h"
 
-@interface SafariExtensionHandler ()
+#include <unistd.h>
+#include <sys/types.h>
+#include <pwd.h>
 
+NSString *RealHomeDirectory() {
+  struct passwd *pw = getpwuid(getuid());
+  return [NSString stringWithUTF8String:pw->pw_dir];
+}
+
+NSMutableDictionary* ReadFile(NSString *path) {
+  return @{
+    @"content": [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil]
+  };
+}
+
+NSMutableDictionary* SearchFiles(NSString *dir) {
+  NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
+  NSMutableDictionary *files = [[NSMutableDictionary alloc] init];
+  NSFileManager* fm = [NSFileManager defaultManager];
+
+  NSArray<NSString*> *contents = [fm contentsOfDirectoryAtPath:dir error:nil];
+  for (NSString* filename in contents) {
+    NSString *filepath = [dir stringByAppendingPathComponent:filename];
+    BOOL isDir = NO;
+    if ([fm fileExistsAtPath:filepath isDirectory:&isDir])
+      files[filename] = isDir ? SearchFiles(filepath) : ReadFile(filepath);
+  }
+  result[@"files"] = files;
+  return result;
+}
+
+@interface SafariExtensionHandler (Private)
+- (void)handleOnLoad:(SFSafariPage *)page;
+- (void)handleExtensionLoaded:(SFSafariPage *)page;
 @end
 
 @implementation SafariExtensionHandler
+
+- (id)init {
+  NSString *configDir = [RealHomeDirectory() stringByAppendingPathComponent:@".injector"];
+  self.config = SearchFiles(configDir);
+  self.config[@"configDir"] = configDir;
+  return [super init];
+}
 
 - (void)messageReceivedWithName:(NSString *)messageName fromPage:(SFSafariPage *)page userInfo:(NSDictionary *)userInfo {
   if ([messageName isEqualToString:@"dom-onload"])
@@ -37,11 +76,11 @@
 }
 
 - (void)handleOnLoad:(SFSafariPage *)page {
-  [page dispatchMessageToScriptWithName:@"dom-onload" userInfo:@{@"myKey":@"myValue"}];
+  [page dispatchMessageToScriptWithName:@"dom-onload" userInfo:nil];
 }
 
 - (void)handleExtensionLoaded:(SFSafariPage *)page {
-  [page dispatchMessageToScriptWithName:@"extension-loaded" userInfo:@{@"myKey":@"myValue"}];
+  [page dispatchMessageToScriptWithName:@"extension-loaded" userInfo:self.config];
 }
 
 @end
