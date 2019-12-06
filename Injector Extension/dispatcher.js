@@ -7,10 +7,6 @@ const EMPTY_CONFIG = {
 let globalCurrentPageConfig = EMPTY_CONFIG
 let globalLoaded = false
 
-document.addEventListener('DOMContentLoaded', function(event) {
-  applyConfig(globalCurrentPageConfig)
-})
-
 safari.self.addEventListener('message', function(event) {
   if (event.name === 'extension-loaded') {
     // Extension can be loaded for multiple times.
@@ -24,6 +20,8 @@ safari.self.addEventListener('message', function(event) {
       globalCurrentPageConfig = EMPTY_CONFIG
       console.error('Failed to parse configuration', error)
     }
+    // Apply the config.
+    applyConfig(globalCurrentPageConfig)
   }
 })
 
@@ -76,13 +74,13 @@ function applyConfig(config) {
   for (const script of config.scripts) {
     const element = document.createElement('script')
     element.innerHTML = '(function(){\n' + script + '\n})()'
-    document.body.appendChild(element)
+    document.head.appendChild(element)
   }
   for (const style of config.styles) {
     const element = document.createElement('style')
     element.type = 'text/css'
     element.appendChild(document.createTextNode(style))
-    document.body.appendChild(element)
+    document.head.appendChild(element)
   }
 }
 
