@@ -18,8 +18,9 @@
 		BD3C9F452399E6AC00225AAF /* SafariExtensionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BD3C9F442399E6AC00225AAF /* SafariExtensionHandler.m */; };
 		BD3C9F482399E6AC00225AAF /* SafariExtensionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD3C9F472399E6AC00225AAF /* SafariExtensionViewController.m */; };
 		BD3C9F4B2399E6AC00225AAF /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD3C9F492399E6AC00225AAF /* SafariExtensionViewController.xib */; };
-		BD3C9F4E2399E6AC00225AAF /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = BD3C9F4D2399E6AC00225AAF /* script.js */; };
+		BD3C9F4E2399E6AC00225AAF /* init.js in Resources */ = {isa = PBXBuildFile; fileRef = BD3C9F4D2399E6AC00225AAF /* init.js */; };
 		BD3C9F502399E6AC00225AAF /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BD3C9F4F2399E6AC00225AAF /* ToolbarItemIcon.pdf */; };
+		BD3C9F5C2399EBBA00225AAF /* dispatcher.js in Resources */ = {isa = PBXBuildFile; fileRef = BD3C9F5B2399EBBA00225AAF /* dispatcher.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,9 +66,10 @@
 		BD3C9F472399E6AC00225AAF /* SafariExtensionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafariExtensionViewController.m; sourceTree = "<group>"; };
 		BD3C9F4A2399E6AC00225AAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
 		BD3C9F4C2399E6AC00225AAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BD3C9F4D2399E6AC00225AAF /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
+		BD3C9F4D2399E6AC00225AAF /* init.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = init.js; sourceTree = "<group>"; };
 		BD3C9F4F2399E6AC00225AAF /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
 		BD3C9F512399E6AC00225AAF /* Injector_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Injector_Extension.entitlements; sourceTree = "<group>"; };
+		BD3C9F5B2399EBBA00225AAF /* dispatcher.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = dispatcher.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +143,8 @@
 				BD3C9F472399E6AC00225AAF /* SafariExtensionViewController.m */,
 				BD3C9F492399E6AC00225AAF /* SafariExtensionViewController.xib */,
 				BD3C9F4C2399E6AC00225AAF /* Info.plist */,
-				BD3C9F4D2399E6AC00225AAF /* script.js */,
+				BD3C9F4D2399E6AC00225AAF /* init.js */,
+				BD3C9F5B2399EBBA00225AAF /* dispatcher.js */,
 				BD3C9F4F2399E6AC00225AAF /* ToolbarItemIcon.pdf */,
 				BD3C9F512399E6AC00225AAF /* Injector_Extension.entitlements */,
 			);
@@ -240,7 +243,8 @@
 			files = (
 				BD3C9F502399E6AC00225AAF /* ToolbarItemIcon.pdf in Resources */,
 				BD3C9F4B2399E6AC00225AAF /* SafariExtensionViewController.xib in Resources */,
-				BD3C9F4E2399E6AC00225AAF /* script.js in Resources */,
+				BD3C9F4E2399E6AC00225AAF /* init.js in Resources */,
+				BD3C9F5C2399EBBA00225AAF /* dispatcher.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

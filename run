@@ -1,0 +1,3 @@
+killall Injector &> /dev/null
+rm -r build/Release/*.{appex,app} &> /dev/null
+xcodebuild && open build/Release/Injector.app
